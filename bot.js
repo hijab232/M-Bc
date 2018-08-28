@@ -72,8 +72,8 @@ client.on('message', msg => {
   });
   
   client.on('message', message => {
-  var prefix = "!";
-  if(message.content.startsWith(prefix + "invbot")) { 
+      if(message.content === '!inv12') {
+          if(message.author.id !== '300048424261255168') return message.reply('**الامر خاص بـ الأدارة السيرفر وشكرا**');
   message.author.send(`https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2080374975`);
   }
   });
@@ -104,4 +104,6 @@ client.on('message', message => {
         } else {
             return;
         }
-   
+    });
+    
+  client.login(process.env.BOT_TOKEN);
