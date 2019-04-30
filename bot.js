@@ -30,7 +30,7 @@ client.on('ready', () => {
             j = -1;
         }
         i = i+j;
-        client.user.setGame(setGame[i],`http://www.twitch.tv/hijab232`);
+        client.user.setGame(setGame[i],`http://www.twitch.tv/KiNg66S`);
     }, ms);100000
 
 });
@@ -57,6 +57,13 @@ client.on('message', function(message) {
     client.channels.get("458493668395843585").send(' ***  البوت  ***   **دخل في**   ***[ ' + `${guild.name}` + ' ]***   ,   **  الأونر  **  ' + ' ***[ ' + '<@' + `${guild.owner.user.id}` + '>' + ' ]***  **|**  ***[ ' + '<' + `${guild.owner.user.username}` + '>' + ' ]***')
     });
 
+
+client.on('message', msg => {
+    if (msg.content === 'السلام عليكم') {
+      msg.channel.sendMessage(' **وعليكم السلام ورحمة الله وبركاته**');
+    }
+  });
+
   client.on('message', msg => {
     if (msg.content === '>>>>>>>>') {
       msg.reply('هلا!');
@@ -65,8 +72,8 @@ client.on('message', function(message) {
   });
   
   client.on('message', message => {
-      if(message.content === '!inv12') {
-          if(message.author.id !== '300048424261255168') return message.reply('**الامر خاص بـ الأدارة السيرفر وشكرا**');
+  var prefix = "!";
+  if(message.content.startsWith(prefix + "invbot")) { 
   message.author.send(`https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2080374975`);
   }
   });
@@ -92,10 +99,11 @@ client.on('message', message => {
                 .setColor('#ff0000')
                 // m.send(`[${m}]`);
                 m.send(`${m}`,{embed: bc});
+            });
         }
         } else {
             return;
         }
-    });
-    
-  client.login(process.env.BOT_TOKEN);
+});
+
+client.login(process.env.BOT_TOKEN);
