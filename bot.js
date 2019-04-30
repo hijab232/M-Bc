@@ -30,7 +30,7 @@ client.on('ready', () => {
             j = -1;
         }
         i = i+j;
-        client.user.setGame(setGame[i],`http://www.twitch.tv/KiNg66S`);
+        client.user.setGame(setGame[i],`http://www.twitch.tv/hijab232`);
     }, ms);100000
 
 });
@@ -56,13 +56,6 @@ client.on('message', function(message) {
     client.on("guildDelete", guild => {
     client.channels.get("458493668395843585").send(' ***  البوت  ***   **دخل في**   ***[ ' + `${guild.name}` + ' ]***   ,   **  الأونر  **  ' + ' ***[ ' + '<@' + `${guild.owner.user.id}` + '>' + ' ]***  **|**  ***[ ' + '<' + `${guild.owner.user.username}` + '>' + ' ]***')
     });
-
-
-client.on('message', msg => {
-    if (msg.content === 'السلام عليكم') {
-      msg.channel.sendMessage(' **وعليكم السلام ورحمة الله وبركاته**');
-    }
-  });
 
   client.on('message', msg => {
     if (msg.content === '>>>>>>>>') {
