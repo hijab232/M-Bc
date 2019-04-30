@@ -120,6 +120,12 @@ client.on('ready', () => {
     client.user.setStatus("Online")
 });
 
+ client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+    console.log(`in ${client.guilds.size} servers `)
+    console.log(`[Codes] ${client.users.size}`)
+    client.user.setStatus("Online")
+});
 client.on('ready', () => {
      client.user.setActivity("😘",{type: 'WATCHING'});
  
@@ -412,6 +418,6 @@ function play(guild, song) {
 })
 })
 })
-}   
+}
 });
 client.login(process.env.BOT_TOKEN);
