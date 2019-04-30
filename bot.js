@@ -114,6 +114,13 @@ client.on('message', message => {
     });
 
 client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+    console.log(`in ${client.guilds.size} servers `)
+    console.log(`[Codes] ${client.users.size}`)
+    client.user.setStatus("Online")
+});
+
+client.on('ready', () => {
      client.user.setActivity("😘",{type: 'WATCHING'});
  
 });
