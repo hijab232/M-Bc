@@ -30,7 +30,7 @@ client.on('ready', () => {
             j = -1;
         }
         i = i+j;
-        client.user.setGame(setGame[i],`http://www.twitch.tv/KiNg66S`);
+        client.user.setGame(setGame[i],`http://www.twitch.tv/hijab232`);
     }, ms);100000
 
 });
