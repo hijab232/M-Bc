@@ -19,7 +19,7 @@ client.on('ready', () => {
   client.on('ready', function(){
     client.user.setStatus("dnd");
     var ms = 100000 ;
-    var setGame = [`Users ${client.users.size}`];
+    var setGame = [`🌙رمضان كريم`];
     var i = -1;
     var j = 0;
     setInterval(function (){
