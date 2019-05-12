@@ -57,13 +57,6 @@ client.on('message', function(message) {
     client.channels.get("458493668395843585").send(' ***  البوت  ***   **دخل في**   ***[ ' + `${guild.name}` + ' ]***   ,   **  الأونر  **  ' + ' ***[ ' + '<@' + `${guild.owner.user.id}` + '>' + ' ]***  **|**  ***[ ' + '<' + `${guild.owner.user.username}` + '>' + ' ]***')
     });
 
-
-client.on('message', msg => {
-    if (msg.content === 'السلام عليكم') {
-      msg.channel.sendMessage(' **وعليكم السلام ورحمة الله وبركاته**');
-    }
-  });
-
   client.on('message', msg => {
     if (msg.content === '>>>>>>>>') {
       msg.reply('هلا!');
@@ -78,32 +71,15 @@ client.on('message', msg => {
   }
   });
 
-client.on('message', message => {
-    var prefix = "!";
-    
-        if (message.author.id === client.user.id) return;
-        if (message.guild) {
-       let embed = new Discord.RichEmbed()
-        let args = message.content.split(' ').slice(1).join(' ');
-    if(message.content.split(' ')[0] == prefix + 'bc') {
-        if (!args[1]) {
-    message.channel.send("**!bc <لبرساله>**");
-    return;
-    }
-            message.guild.members.forEach(m => {
-       if(!message.member.hasPermission('ADMINISTRATOR')) return;
-                var bc = new Discord.RichEmbed()
-                .addField('» السيرفر :', `${message.guild.name}`)
-                .addField('» المرسل : ', `${message.author.username}#${message.author.discriminator}`)
-                .addField(' » الرسالة : ', args)
-                .setColor('#ff0000')
-                // m.send(`[${m}]`);
-                m.send(`${m}`,{embed: bc});
-            });
-        }
-        } else {
-            return;
-        }
-});
+client.on('message', async message => {
+  let args = message.content.slice(3);
+  if(message.content.startsWith(prefix + 'bc')) {
+    if(!message.guild.members.get(message.author.id).hasPermission('ADMINISTRATOR')) return message.channel.send('Required Administrator Permission')
+       message.guild.members.forEach(m => {
+      
+      m.send(args.replace('[user]', m).replace('[server]', m.guild.name).replace('[sender]', message.author.username))
+    })
+  }
+})
 
 client.login(process.env.BOT_TOKEN);
