@@ -4,10 +4,14 @@
   "description": "-- AWESOMENESS --",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node music.js"
   },
   "dependencies": {
+    "discord.js": "^11.3.2", 
     "ascii-data-table": "^2.1.1",
+    "node-opus": "^0.3.0",
+    "short-number": "^1.0.6",
+     "hh-mm-ss": "^1.2.0",
     "canvas": "^1.6.10",
     "dateformat": "^3.0.3",
     "discord.js": "^11.3.2",
@@ -30,7 +34,10 @@
     "sqlite": "^2.9.1",
     "sqlite3": "^4.0.0",
     "youtube-info": "^1.2.0",
-    "ytdl-core": "^0.20.3"
+    "ytdl-core": "^0.20.3",
+    "table":"5.2.3",
+    "array-sort":"1.0.0",
+    "codes-official":"0.0.15"
   },
   "engines": {
     "node": "8.4.0"
