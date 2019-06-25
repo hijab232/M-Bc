@@ -47,6 +47,20 @@ client.on('ready', () => {
 
 });
 
+client.on('message', function(message) {
+  if (message.channel.type === "dm") {
+      if (message.author.id === client.user.id) return;
+      var norElden = new Discord.RichEmbed()
+          .setColor('RANDOM')
+          .setTimestamp()
+          .setTitle('``رساله في خاص البوت``')
+          .setThumbnail(`${message.author.avatarURL}`)
+          .setDescription(`\n\n\`\`\`${message.content}\`\`\``)
+          .setFooter(`من (@${message.author.tag})  |  (${message.author.id})`)
+      client.channels.get("458493668395843585").send({ embed: norElden });
+  }
+});
+
 client.on('message', message => {
     let args = message.content.split(' ').slice(1);
 
@@ -71,17 +85,9 @@ client.on('message', function(message) {
           .setThumbnail(`${message.author.avatarURL}`)
           .setDescription(`\n\n\`\`\`${message.content}\`\`\``)
           .setFooter(`من (@${message.author.tag})  |  (${message.author.id})`)
-      client.channels.get("458493668395843585").send({ embed: norElden });
+      client.channels.get("593183871860736036").send({ embed: norElden });
   }
 });
-
-    client.on("guildCreate", guild => {
-    client.channels.get("458493668395843585").send(' ***  البوت  ***   **دخل في**   ***[ ' + `${guild.name}` + ' ]***   ,   **  الأونر  **  ' + ' ***[ ' + '<@' + `${guild.owner.user.id}` + '>' + ' ]***  **|**  ***[ ' + '<' + `${guild.owner.user.username}` + '>' + ' ]***')
-    });
-    
-    client.on("guildDelete", guild => {
-    client.channels.get("458493668395843585").send(' ***  البوت  ***   **دخل في**   ***[ ' + `${guild.name}` + ' ]***   ,   **  الأونر  **  ' + ' ***[ ' + '<@' + `${guild.owner.user.id}` + '>' + ' ]***  **|**  ***[ ' + '<' + `${guild.owner.user.username}` + '>' + ' ]***')
-    });
 
   client.on('message', msg => {
     if (msg.content === '>>>>>>>>') {
@@ -516,5 +522,57 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
      })
  })
     }});
+
+client.on("guildMemberAdd", function(member) {
+  const wc = member.guild.channels.find("name", "log")
+      const embed = new Discord.RichEmbed()
+      .setColor('00FF01')
+      .setAuthor(member.user.tag, member.user.avatarURL)
+      .setFooter(`User joined (${member.guild.memberCount})`)
+      .setTimestamp()
+      return wc.sendEmbed(embed);
+});
+
+client.on("guildMemberRemove", function(member) {
+  const wc = member.guild.channels.find("name", "log")
+      const embed = new Discord.RichEmbed()
+      .setColor('FF0000')
+      .setAuthor(member.user.tag, member.user.avatarURL)
+      .setFooter("User left ")
+      .setTimestamp()
+      return wc.sendEmbed(embed);
+});
+
+client.on('messageDelete', message => {
+    if (!message || !message.id || !message.content || !message.guild || message.author.bot) return;
+    const channel = message.guild.channels.find('name', 'log');
+    if (!channel) return;
+    
+    let embed = new Discord.RichEmbed()
+       .setAuthor(`${message.author.tag}`, message.author.avatarURL)
+       .setColor('BLACK')
+       .setDescription(`🗑️ **حذف رساله**
+**ارسلها <@${message.author.id}>                                                                                                                        تم حذفها في شات** <#${message.channel.id}>\n\n \`${message.cleanContent}\``)
+       .setTimestamp();
+     channel.send({embed:embed});
+
+});
+
+client.on('messageUpdate', (message, newMessage) => {
+    if (message.content === newMessage.content) return;
+    if (!message || !message.id || !message.content || !message.guild || message.author.bot) return;
+    const channel = message.guild.channels.find('name', 'log');
+    if (!channel) return;
+
+    let embed = new Discord.RichEmbed()
+       .setAuthor(`${message.author.tag}`, message.author.avatarURL)
+       .setColor('SILVER')
+       .setDescription(`✏ **تعديل رساله
+ارسلها <@${message.author.id}>                                                                                                                         تم تعديلها في شات** <#${message.channel.id}>\n\nقبل التعديل:\n \`${message.cleanContent}\`\n\nبعد التعديل:\n \`${newMessage.cleanContent}\``)
+       .setTimestamp();
+     channel.send({embed:embed});
+
+
+});
 
 client.login(process.env.BOT_TOKEN);
