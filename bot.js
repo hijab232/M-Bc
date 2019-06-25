@@ -21,6 +21,10 @@ client.on('ready', () => {
   console.log('')
   console.log(`Users! [ " ${client.users.size} " ]`);
   console.log('')
+  console.log(`prefix = [" ${prefix}"]`)
+  console.log('')
+  console.log(`[Codes] ${client.users.size}`)
+  console.log('')
   console.log('╚[════════════════════════════════════]╝')
 });
 
