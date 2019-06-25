@@ -575,4 +575,21 @@ client.on('messageUpdate', (message, newMessage) => {
 
 });
 
+                 if(!message.channel.guild) return;
+
+                    if (message.content === prefix + "حالة الأعضاء") {
+ const embed = new Discord.RichEmbed()
+
+    .setDescription(`**Members info ✨
+💚 online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}
+❤  dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
+💛  idle:     ${message.guild.members.filter(m=>m.presence.status == 'idle').size}
+💠   membersCount:  ${message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size}
+💡 bots: ${message.guild.members.filter(m=>m.user.bot).size} **`)
+         message.channel.send({embed});
+
+    }
+      });
+
+
 client.login(process.env.BOT_TOKEN);
