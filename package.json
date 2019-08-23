@@ -53,6 +53,7 @@
     "superagent": "^3.8.3",
     "random-number": "^0.0.9",
     "forever":"^0.15.3",
+    "anti-spam": "0.2.7", 
     "weather-js":"^2.0.0"
   },
   "engines": {
